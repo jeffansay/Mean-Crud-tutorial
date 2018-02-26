@@ -1,0 +1,24 @@
+{
+  "name": "myblogpost",
+  "version": "1.0.0",
+  "description": "\"# Mean-Crud-tutorial\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffansay/Mean-Crud-tutorial.git"
+  },
+  "author": "jeff ansay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffansay/Mean-Crud-tutorial/issues"
+  },
+  "homepage": "https://github.com/jeffansay/Mean-Crud-tutorial#readme",
+  "dependencies": {
+    "crypto-random-string": "^1.0.0",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7"
+  }
+}
