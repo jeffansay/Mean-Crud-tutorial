@@ -1,0 +1,15 @@
+ .reg_form {
+   margin-top: 100px;
+   margin-left: 250px;
+ }
+
+.hidePop {
+  padding-left: 100px;
+}
+
+.has-warning .control-label,
+.has-warning .help-block,
+.has-warning .form-control-feedback {
+      color: #F0AD4E;
+
+  }
