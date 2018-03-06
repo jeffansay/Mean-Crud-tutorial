@@ -22,12 +22,11 @@
 
 <div class="form-group">
   <label for="email">Email</label>
-  <div [ngClass]="{'has-warning': (form.controls.email.errors && form.controls.email.dirty) || (!emailValid && form.controls.email.dirty), 'has-success': !form.controls.email.errors && emailValid}">
+  <div [ngClass]="{'has-warning': (form.controls.email.errors && form.controls.email.dirty) , 'has-success': !form.controls.email.errors}">
     <input type="text" name="email" class="form-control" autocomplete="off" placeholder="Email" formControlName="email">
     <ul class="help-block mt-3">
       <li *ngIf="form.controls.email.errors?.required && form.controls.email.dirty">This Field Required</li>
       <li *ngIf="(form.controls.email.errors?.minlength || form.controls.email.errors?.maxlength) && form.controls.email.dirty">Minimum characters: 5, Maximum characters: 30 </li>
-        <li *ngIf="!emailMessage || emailMessage"> {{ emailMessage }}</li>
     <!-- <li *ngIf="form.constrols.email.errors?.validateEmail && form.controls.email.dirty">This must be a valid e-mail </li> -->
 
     </ul>

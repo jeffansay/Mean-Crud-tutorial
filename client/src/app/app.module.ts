@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpModule } from '@angular/http';
 import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AuthService } from './services/auth.service';
     HomeComponent,
     RegisterComponent,
     DashboardComponent,
+    LoginComponent,
 
   ],
   imports: [
