@@ -2,12 +2,13 @@
    <h5 class="my-0 mr-md-auto font-weight-normal">{{ navbarTitle }}</h5>
 
    <nav class="my-2 my-md-0 mr-md-3">
-     <a class="p-2 text-dark" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Home</a>
-     <a class="p-2 text-dark" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard">Dashbaord</a>
-     <a class="p-2 text-dark" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/profile">Profile</a>
-     <a class="p-2 text-dark" href="#">Blog</a>
-     <a class="p-2 text-dark" routerLink="/login">Login</a>
+     <a class="p-2 text-dark" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/">Home</a>
+     <a class="p-2 text-dark" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard">Dashbaord</a>
+     <a class="p-2 text-dark" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/profile">Profile</a>
+     <a class="p-2 text-dark" *ngIf="authService.loggedIn()" href="#">Blog</a>
+     <a class="p-2 text-dark"  *ngIf="!authService.loggedIn()" routerLink="/login">Login</a>
+     <a class="p-2 text-dark" *ngIf="authService.loggedIn()" (click)="onLogoutClick()">Logout</a>
    </nav>
-   <a class="btn btn-outline-primary" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/register">Sign up</a>
+   <a class="btn btn-outline-primary" *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/register">Sign up</a>
 
  </div>
