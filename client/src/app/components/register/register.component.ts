@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   processing = false;
   emailValid;
   emailMessage;
-  userValid;
-  userMessage;
+  usernameValid;
+  usernameMessage;
 
 
   constructor(private formBuilder: FormBuilder, private authService : AuthService, private router : Router) {
@@ -101,26 +101,10 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-    checkEmail() {
-      const email = this.form.get('email').value;
-
-      this.authService.checkEmail(email).subscribe(data => {
-
-              if(!data.success){
-                this.emailValid = false;
-                this.emailMessage = data.message;
-
-                console.log(data.sucess);
-              } else {
-                  this.emailValid = true;
-                  this.emailMessage =  data.message;
-              }
-      });
-    }
 
   validateEmail(controls){
 
-const regExp = new RegExp(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/);
+const regExp = new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/);
 
     if(regExp.test(controls.value)){
       return null;
@@ -152,6 +136,7 @@ const regExp = new RegExp(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-z
     }
   }
 
+
   matchingPassword(password, confirm){
       return (group: FormGroup) => {
         if(group.controls[password].value === group.controls[confirm].value){
@@ -159,8 +144,39 @@ const regExp = new RegExp(/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-z
         } else {
           return { 'matchingPassword': true }
         }
-      }
+
+    }
   }
+
+  // Function to check if e-mail is taken
+ checkEmail() {
+   // Function from authentication file to check if e-mail is taken
+   this.authService.checkEmail(this.form.get('email').value).subscribe(data => {
+     // Check if success true or false was returned from API
+     if (!data.success) {
+       this.emailValid = false; // Return email as invalid
+       this.emailMessage = data.message; // Return error message
+     } else {
+       this.emailValid = true; // Return email as valid
+       this.emailMessage = data.message; // Return success message
+     }
+   });
+ }
+
+ // Function to check if username is available
+checkUsername() {
+  // Function from authentication file to check if username is taken
+  this.authService.checkUsername(this.form.get('username').value).subscribe(data => {
+    // Check if success true or success false was returned from API
+    if (!data.success) {
+      this.usernameValid = false; // Return username as invalid
+      this.usernameMessage = data.message; // Return error message
+    } else {
+      this.usernameValid = true; // Return username as valid
+      this.usernameMessage = data.message; // Return success message
+    }
+  });
+}
   ngOnInit() {
   }
 
